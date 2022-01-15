@@ -7,26 +7,26 @@ start: talk.html
 
 talk.html: $(talk-file) reveal.js
 	pandoc --standalone --slide-level=2 --to revealjs --css style.css \
-		-S -o $@ $<
+		-o ./out/$@ $<
 
 talk.tex: $(talk-file)
-	pandoc --standalone --slide-level=2 --to beamer -o $@ $<
+	pandoc --standalone --slide-level=2 --to beamer -o ./out/$@ $<
 
 talk.pdf: $(talk-file)
 	pandoc --standalone --slide-level=2 --to beamer \
-		-o $@ $<
 		--pdf-engine=xelatex \
+		-o ./out/$@ $<
 
 talk-notes.pdf: $(talk-file)
 	pandoc --standalone --slide-level=2 --to beamer \
 		--pdf-engine=xelatex \
 		--metadata='classoption:notes=only' \
-		-o $@ $<
+		-o ./out/$@ $<
 
 talk-handout.pdf: $(talk-file)
 	pandoc --standalone --to latex \
-		-o $@ $<
 		--pdf-engine=xelatex \
+		-o ./out/$@ $<
 
 reveal.js:
 	git submodule update --init
