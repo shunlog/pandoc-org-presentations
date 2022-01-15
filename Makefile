@@ -14,19 +14,19 @@ talk.tex: $(talk-file)
 
 talk.pdf: $(talk-file)
 	pandoc --standalone --slide-level=2 --to beamer \
-		--latex-engine=xelatex \
 		-o $@ $<
+		--pdf-engine=xelatex \
 
 talk-notes.pdf: $(talk-file)
 	pandoc --standalone --slide-level=2 --to beamer \
-		--latex-engine=xelatex \
+		--pdf-engine=xelatex \
 		--metadata='classoption:notes=only' \
 		-o $@ $<
 
 talk-handout.pdf: $(talk-file)
 	pandoc --standalone --to latex \
-		--latex-engine=xelatex \
 		-o $@ $<
+		--pdf-engine=xelatex \
 
 reveal.js:
 	git submodule update --init
